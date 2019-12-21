@@ -7,21 +7,32 @@
  function generateCat(){
     var image = document.createElement('img');
     var div = document.getElementById('flex-cat-gen');
-    image.src = 'http://thecatapi.com/api/images/get?format=src&type=gif&size=small';
-    div.appendChild(image);
+    
+    image.src = 'http://thecatapi.com/api/images/get?format=src&type=gif&random='+Math.floor(Math.random() * 999999999) + 1;
+    
+    document.getElementById("catGenerator").disabled = true; 
+    document.getElementById("catGenerator").classList.add("btn-danger");
+    image.style.width = "500px";
+    image.style.height = "333px";
+    image.onload = function() {
+      div.innerHTML = image.outerHTML;
+      document.getElementById("catGenerator").disabled = false;
+      document.getElementById("catGenerator").classList.remove("btn-danger");
+
+      console.log("Image 1 ready to append");
+      
+  };
  }
 
- var generate = false;
+ window.addEventListener('load', 
+ function() { 
+   generateCat();
+ }, false);
 
  document.getElementById("catGenerator").onclick = function(){
-    if(generate == true){
-       location.reload();
-    }
-    else{
-       generate =  true;
-       document.getElementById("catGenerator").innerHTML = "Reset Generate";
+    
        generateCat();
-    }
+    
 
  }
 
