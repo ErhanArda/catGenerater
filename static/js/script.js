@@ -14,6 +14,10 @@
     document.getElementById("catGenerator").classList.add("btn-danger");
     image.style.width = "500px";
     image.style.height = "333px";
+    if(screen.width<=768){
+      image.style.width = "320";
+      image.style.height = "180px";
+    }
     image.onload = function() {
       div.innerHTML = image.outerHTML;
       document.getElementById("catGenerator").disabled = false;
